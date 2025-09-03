@@ -1,4 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
 #define MAX 10
+
+
 typedef struct {
     int elem[MAX];
     int count;
@@ -14,30 +18,24 @@ List insertPos(List L, int data, int position){
     if(position < L.count){
         return L;
     }
-    if(position > L.count){
-        L.elem[position] = data;
-        L.count += 1;
-        return L;
-    }else if(position <= L.count){
-        int i;
-        for(i = L.count - 1; i == position; i--){
-            int temp = L.elem[i];
-            L.elem[i+1] = temp;
-        }
-        L.elem[position] = data;
-        L.count += 1;
-        return L;
+    int i;
+    for(i = L.count; i > position; i--){
+        L.elem[i] = L.elem[i-1];
     }
+    L.elem[position] = data;
+    L.count++;
+    return L;
 }
+
 List deletePos(List L, int position){
     if(position > L.count){
         return L;
     }
     int i;
-    for(i = position; i < L.count; i++){
+    for(i = position; i < L.count - 1; i++){
         L.elem[i] = L.elem[i+1];
     }
-    L.count -= 1;
+    L.count --;
     return L;
 }
 int locate(List L, int data){
@@ -78,7 +76,7 @@ int main(){
     List L;
     int found;
 
-    initialize(L);
+    L = initialize(L);
     L = insertPos(L,1,0);
     L = insertPos(L,3,1);
     L = insertPos(L,5,2);
