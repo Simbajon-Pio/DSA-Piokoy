@@ -22,9 +22,9 @@ List* initialize(){
 }
 
 void empty(List *list){
-    if(list->next == NULL){
-        return;
-    }
+    // if(list->next == NULL){
+    //     return;
+    // }
     Node *current = list->head;
     while (current != NULL){
         Node *temp = current;
@@ -32,7 +32,7 @@ void empty(List *list){
         free(temp);
     }
     list->count =0;
-    free(list->next);
+    // free(list->next);
     list->head = NULL;
 }
 
@@ -46,17 +46,16 @@ void insertFirst(List *list, int data){
 void insertLast(List *list, int data){
     Node *newNode = malloc(sizeof(Node));
     newNode->data = data;
-    if(list->next == NULL){
-        list->next = newNode;
+    if(list->head == NULL){
+        list->head = newNode;
     }else{
-        Node *temp = list->next;
+        Node *temp = list->head;
         while(temp->next != NULL){
             temp = temp->next;
         }
         temp->next = newNode;
     }
     list->count++;
-    
 }
 
 void insertPos(List *list, int data, int index){
@@ -65,14 +64,14 @@ void insertPos(List *list, int data, int index){
         return;
     }
     if(index == 0){
-        insertFirst(&List, data);
+        insertFirst(list, data);
     }else if(index == list->count){
-        insertLast(&List, data);
+        insertLast(list, data);
     }else{
         Node *newNode = malloc(sizeof(Node));
         newNode->data = data;
-        Node *current = list->next;
-        for(int i = 0; i < index-1; i++){
+        Node *current = list->head;
+        for(int i = 0; i < index - 1; i++){
             current = current->next;
         }
         newNode->next = current->next;
