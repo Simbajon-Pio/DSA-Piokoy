@@ -57,7 +57,7 @@ void display(Stack* s) {
     if(isEmpty(s)) {
         return;
     }
-    printf("Stack (top -> bot: ");
+    printf("Stack (top -> bot): ");
     for(int i = s->top; i >= 0; i--) {
         printf("%d\n", s->items[i]);
     }
