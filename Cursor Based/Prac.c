@@ -62,7 +62,7 @@ void insertLast(int* L, VHeap* V, int elem) {
     }
 }
 
-void delete(int* L, VHeap* V, int elem) {
+void deleteElem(int* L, VHeap* V, int elem) {
     int *trav = L;
     int temp;
     while(*trav != -1 && V->H[*trav].elem != elem) {
@@ -80,7 +80,7 @@ void display(int L, VHeap V) {
     int trav = L;
     printf("Lista: ");
     while(trav != -1) {
-        printf("%d, %d", trav, V.H[trav].elem);
+        printf("|%d| |%d| ->", trav, V.H[trav].elem);
         trav = V.H[trav].next;
     }
 }
@@ -98,12 +98,12 @@ int main() {
 
     display(L, V);
 
-    printf("Deleting 20...\n");
-    delete(&L, &V, 20);
+    printf(" Deleting 20...\n");
+    deleteElem(&L, &V, 20);
     display(L, V);
 
-    printf("Deleting 40...\n");
-    delete(&L, &V, 40);
+    printf(" Deleting 40...\n");
+    deleteElem(&L, &V, 40);
     display(L, V);
 
     return 0;
